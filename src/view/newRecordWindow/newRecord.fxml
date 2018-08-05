@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="444.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewRecordFXMLController">
+   <children>
+      <Label layoutX="23.0" layoutY="77.0" text="Дата" />
+      <DatePicker fx:id="datePicker" layoutX="164.0" layoutY="74.0" prefHeight="24.0" prefWidth="233.0" />
+      <Label layoutX="23.0" layoutY="124.0" text="Сумма" />
+      <Label layoutX="21.0" layoutY="21.0" text="Пользователь">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
+      <Label fx:id="loginLabel" layoutX="129.0" layoutY="18.0" text="Admin" textFill="#5c1890">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="amountField" alignment="CENTER_RIGHT" layoutX="164.0" layoutY="121.0" prefHeight="27.0" prefWidth="233.0" promptText="0.00" />
+      <ChoiceBox fx:id="accountChoiceBox" layoutX="164.0" layoutY="168.0" prefHeight="27.0" prefWidth="233.0" />
+      <ChoiceBox fx:id="operationTypeChoiceBox" layoutX="164.0" layoutY="215.0" prefHeight="27.0" prefWidth="233.0" />
+      <ComboBox fx:id="categoryComboBox" editable="true" layoutX="165.0" layoutY="260.0" prefHeight="27.0" prefWidth="233.0" />
+      <Label layoutX="23.0" layoutY="171.0" text="Счет" />
+      <Label layoutX="23.0" layoutY="218.0" text="Тип операции" />
+      <Label layoutX="23.0" layoutY="265.0" text="Категория" />
+      <Label layoutX="22.0" layoutY="320.0" text="Описание" />
+      <TextArea fx:id="description" layoutX="164.0" layoutY="309.0" prefHeight="48.0" prefWidth="233.0" />
+      <Button defaultButton="true" layoutX="222.0" layoutY="380.0" mnemonicParsing="false" onAction="#okButtonPushed" text="Ок">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button cancelButton="true" layoutX="305.0" layoutY="380.0" mnemonicParsing="false" onAction="#cancelButtonPushed" text="Отмена">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</Pane>

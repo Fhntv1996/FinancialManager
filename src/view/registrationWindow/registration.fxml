@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrationFXMLController">
+   <children>
+      <Label fx:id="loginLabel" layoutX="33.0" layoutY="63.0" text="Имя пользователя" />
+      <TextField fx:id="loginField" layoutX="180.0" layoutY="60.0" prefHeight="27.0" prefWidth="213.0" />
+      <Label fx:id="passwordLabel" layoutX="33.0" layoutY="113.0" text="Пароль" />
+      <Label fx:id="repeatedPasswordLabel" layoutX="33.0" layoutY="163.0" text="Повторите пароль" />
+      <PasswordField fx:id="passwordField" layoutX="180.0" layoutY="110.0" prefHeight="27.0" prefWidth="213.0" />
+      <PasswordField fx:id="repeatedPasswordField" layoutX="180.0" layoutY="160.0" prefHeight="27.0" prefWidth="213.0" />
+      <Button fx:id="okButton" defaultButton="true" layoutX="222.0" layoutY="220.0" mnemonicParsing="false" onAction="#okButtonPushed" text="Ок" />
+      <Button fx:id="cancelButton" cancelButton="true" layoutX="300.0" layoutY="220.0" mnemonicParsing="false" onAction="#cancelButtonPushed" text="Отмена" />
+   </children>
+</Pane>

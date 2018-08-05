@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewAccountFXMLController">
+   <children>
+      <Label layoutX="14.0" layoutY="21.0" text="Пользователь">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="loginLabel" layoutX="123.0" layoutY="18.0" text="Admin" textFill="#5c1890">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="accountIDLabel" layoutX="14.0" layoutY="70.0" text="Номер счета" />
+      <Label fx:id="amountLabel" layoutX="14.0" layoutY="111.0" text="Сумма" />
+      <Label fx:id="descriptionLabel" layoutX="14.0" layoutY="150.0" text="Название счета" />
+      <TextField fx:id="accountIDField" layoutX="132.0" layoutY="66.0" prefHeight="27.0" prefWidth="213.0" />
+      <TextField fx:id="amountField" alignment="CENTER_RIGHT" layoutX="132.0" layoutY="107.0" prefHeight="27.0" prefWidth="213.0" promptText="0.00" />
+      <TextField fx:id="descriptionField" layoutX="132.0" layoutY="146.0" prefHeight="27.0" prefWidth="213.0" />
+      <Button fx:id="okButton" defaultButton="true" layoutX="161.0" layoutY="201.0" mnemonicParsing="false" onAction="#okButtonPushed" text="Ок">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="cancelButton" cancelButton="true" layoutX="245.0" layoutY="201.0" mnemonicParsing="false" onAction="#cancelButtonPushed" text="Отмена">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</Pane>

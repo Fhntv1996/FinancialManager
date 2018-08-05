@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ApplicationFXMLController">
+   <children>
+      <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutY="77.0" prefHeight="457.0" prefWidth="202.0" text="Счета">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="429.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="newAccountButton" layoutX="45.0" layoutY="358.0" mnemonicParsing="false" onAction="#newAccountButtonPushed" text="Добавить счет">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <ListView fx:id="accountsListView" prefHeight="358.0" prefWidth="202.0" />
+                  <Label alignment="CENTER" layoutX="1.0" layoutY="385.0" prefHeight="49.0" prefWidth="202.0" text="Для просмотра подробной информации о счете и для его удаления кликните по нему правой кнопокй мыши." textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="202.0" layoutY="77.0" prefHeight="457.0" prefWidth="758.0" text="Записи" wrapText="true">
+        <content>
+          <AnchorPane minHeight="220.0" minWidth="596.0" prefHeight="408.0" prefWidth="734.0">
+               <children>
+                  <Button layoutX="54.0" layoutY="402.0" mnemonicParsing="false" onAction="#newRecordButtonPushed" prefHeight="27.0" prefWidth="151.0" text="Добавить запись">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button layoutX="567.0" layoutY="402.0" mnemonicParsing="false" onAction="#deleteAllRecordsButtonPushed" text="Удалить все записи">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <TableView fx:id="recordsTableView" layoutX="-1.0" layoutY="-7.0" prefHeight="409.0" prefWidth="758.0">
+                    <columns>
+                      <TableColumn fx:id="tableDateCol" editable="false" prefWidth="118.0" text="Дата" />
+                      <TableColumn fx:id="tableAmountCol" prefWidth="118.0" text="Сумма" />
+                        <TableColumn fx:id="tableOperationCol" prefWidth="118.0" text="Тип операции" />
+                        <TableColumn fx:id="tableCategoryCol" prefWidth="118.0" text="Категория" />
+                        <TableColumn fx:id="tableAccountCol" prefWidth="131.0" text="Номер счета" />
+                        <TableColumn fx:id="tableDescriptionCol" prefWidth="132.0" text="Описание" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="311.0" layoutY="402.0" mnemonicParsing="false" onAction="#deleteRecordButtonPushed" prefHeight="27.0" prefWidth="151.0" text="Удалить запись">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </AnchorPane>
+        </content>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </TitledPane>
+      <MenuBar prefHeight="29.0" prefWidth="960.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Файл">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#changeUserMenuItemPushed" text="Сменить пользователя" />
+                  <MenuItem mnemonicParsing="false" onAction="#changePasswordMenuItemPushed" text="Изменить пароль" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Помощь">
+            <items>
+              <MenuItem mnemonicParsing="false" text="О программе" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Pane layoutY="28.0" prefHeight="49.0" prefWidth="960.0">
+         <children>
+            <Label layoutX="14.0" layoutY="17.0" text="Пользователь:">
+               <font>
+                  <Font name="Lucida Grande Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="loginLabel" layoutX="120.0" layoutY="14.0" text="Admin" textFill="#5c1890">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="454.0" layoutY="17.0" text="Остаток на счете:">
+               <font>
+                  <Font name="Lucida Grande Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="currentBalanceLabel" layoutX="587.0" layoutY="14.0" text="0.0" textFill="DARKGREEN">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>
