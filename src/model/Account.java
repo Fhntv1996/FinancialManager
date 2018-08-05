@@ -124,7 +124,7 @@ public class Account {
     public void removeAllRecords() {
         double amount = 0;
         for (Record record : records) {
-            if (record.getOperation().equals(Record.getWithdrawalOperation())) {//FIXME nullException непонятно из-зи чего
+            if (record.getOperation().equals(Record.getWithdrawalOperation())) {
                 amount += record.getAmount();
             }
             if (record.getOperation().equals(Record.getDepositOperation())) {
