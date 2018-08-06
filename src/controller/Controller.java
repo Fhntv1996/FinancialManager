@@ -16,6 +16,9 @@ import model.exceptions.UserAlreadyExists;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -143,10 +146,26 @@ public class Controller {
     }
 
     /*
-     * Открытие файла "О программе".
+     * Открытие окна "О программе".
      */
-    void openAboutProgramFile() {//FIXME
+    void openAboutProgramWindow(Stage mainStage) {
+        FXMLLoader loader = getAboutProgramFXMLLoader();
 
+        Stage aboutProgramStage = getModalStage(mainStage);
+        initStage(loader, aboutProgramStage);
+
+        Path path = FileSystems.getDefault().getPath("src", "view", "aboutProgramWindow", "О программе.txt");
+        try {
+            String aboutProgram = new String(Files.readAllBytes(path));
+
+            AboutProgramFXMLController fxmlController = loader.getController();
+            fxmlController.setText(aboutProgram);
+        } catch (IOException e) {
+            showAlertMessage(Alert.AlertType.ERROR, "Файл с описанием программы не найден.");
+            return;
+        }
+
+        aboutProgramStage.showAndWait();
     }
 
     /*
@@ -297,6 +316,11 @@ public class Controller {
                 .getResource("/view/changePasswordWindow/changePassword.fxml"));
     }
 
+    private FXMLLoader getAboutProgramFXMLLoader() {
+        return new FXMLLoader(AboutProgramFXMLController.class
+                .getResource("/view/aboutProgramWindow/aboutProgram.fxml"));
+    }
+
     /*
      * Метод получает на вход ссылку на родительское окно.
      * Возвращает новое окно.
@@ -325,4 +349,3 @@ public class Controller {
         }
     }
 }
-//FIXME 3. Тесты
