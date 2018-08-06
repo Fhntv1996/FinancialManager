@@ -155,7 +155,7 @@ public class ApplicationFXMLController {
      * Метод вызывается при выборе пункта меню "О программе".
      */
     @FXML
-    private void aboutProgramMenuItemPushed() { controller.openAboutProgramFile(); }
+    private void aboutProgramMenuItemPushed() { controller.openAboutProgramWindow(getStage()); }
 
     private void setLoginLabel(String login) {
         loginLabel.setText(login);
