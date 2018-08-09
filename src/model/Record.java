@@ -5,8 +5,8 @@ public class Record {
     private int recordID;//Получаем из базы данных(autoincrement)
     private String operation;//withdrawal, deposit
     private String date;
-    private double amount;//В рамках приложения над деньгами производятся лишь операции сложения и вычитания(c точностью до
-    private String description;//двух знаков после запятой), поэтому используется double вместо BigDecimal
+    private double amount;//FIXME Изменить на BigDecimal
+    private String description;
     private String category;
 
     public Record(String accountID, String operation, String date, double amount, String description, String category) {

@@ -11,8 +11,8 @@ public class Account {
     private String owner;
     private String accountID;
     private String description;
-    private double balance; //В рамках приложения над деньгами производятся лишь операции сложения и вычитания(c точностью до
-    private String creationDate;//двух знаков после запятой),поэтому используется double вместо BigDecimal
+    private double balance;//FIXME Изменить на BigDecimal
+    private String creationDate;
     private LinkedList<Record> records;
 
     public Account(String owner, String accountID, String description, double balance) {
