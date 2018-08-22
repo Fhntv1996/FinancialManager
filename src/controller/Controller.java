@@ -229,7 +229,7 @@ public class Controller {
     void addAccount(String accountID, String amount, String description) throws AccountAlreadyExists {
         amount = amount.replace(',', '.');//В окне добавления счета можно вводить сумму как с '.', так и с ','.
 
-        Account account = new Account(getApplicationUser().getLogin(), accountID, description, Double.parseDouble(amount));
+        Account account = new Account(getApplicationUser().getLogin(), accountID, description, amount);
         dbController.addAccount(getApplicationUser(), account);
         getApplicationUser().addAccount(account);
     }
@@ -253,7 +253,7 @@ public class Controller {
         amount = amount.replace(',', '.');//В окне добавления записи можно вводить сумму как с '.', так и с ','.
 
         Account currentAccount = getApplicationUser().getAccount(accountID);//Получаем счет по его ID
-        Record record = new Record(accountID, operation, date, Double.parseDouble(amount), description, category);
+        Record record = new Record(accountID, operation, date, amount, description, category);
         dbController.addRecord(currentAccount, record);
         currentAccount.addRecord(record);
         applicationUser.addCategory(record.getCategory());//Добавляем категорию, если ее еще нет в списке категорий данного пользователя

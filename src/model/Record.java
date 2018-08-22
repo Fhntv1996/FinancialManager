@@ -1,29 +1,31 @@
 package model;
 
+import java.math.BigDecimal;
+
 public class Record {
     private String accountID;
     private int recordID;//Получаем из базы данных(autoincrement)
     private String operation;//withdrawal, deposit
     private String date;
-    private double amount;//FIXME Изменить на BigDecimal
+    private BigDecimal amount;
     private String description;
     private String category;
 
-    public Record(String accountID, String operation, String date, double amount, String description, String category) {
+    public Record(String accountID, String operation, String date, String amount, String description, String category) {
         this.accountID = accountID;
         this.operation = operation;
         this.date = date;
-        this.amount = amount;
+        this.amount = new BigDecimal(amount);
         this.description = description;
         this.category = category;
     }
 
     public Record() {
-        this("accountID", "operation", "date", 0, "description", "category");
+        this("accountID", "operation", "date", "0", "description", "category");
     }
 
     public Record(String accountID) {
-        this(accountID, "operation", "date", 0, "description", "category");
+        this(accountID, "operation", "date", "0", "description", "category");
     }
 
 
@@ -72,12 +74,12 @@ public class Record {
     }
 
 
-    public double getAmount() {
-        return amount;
+    public String getAmount() {
+        return amount.toString();
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setAmount(String amount) {
+        this.amount = new BigDecimal(amount);
     }
 
 

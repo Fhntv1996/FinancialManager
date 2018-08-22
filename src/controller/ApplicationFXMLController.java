@@ -281,7 +281,7 @@ public class ApplicationFXMLController {
                 setRecordsTableView(newAccount);
                 setCurrentBalanceLabel(newAccount.getBalance());
             } else {
-                setCurrentBalanceLabel(0.0);
+                setCurrentBalanceLabel("0.0");
             }
         });
 
@@ -317,8 +317,8 @@ public class ApplicationFXMLController {
     }
 
 
-    private void setCurrentBalanceLabel(Double currentBalance) {
-        currentBalanceLabel.setText(Double.toString(currentBalance));
+    private void setCurrentBalanceLabel(String currentBalance) {
+        currentBalanceLabel.setText(currentBalance);
     }
 
     /*

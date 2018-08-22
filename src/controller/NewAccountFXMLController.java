@@ -47,8 +47,6 @@ public class NewAccountFXMLController {
             controller.addAccount(accountIDField.getText(), amountField.getText(),
                     descriptionField.getText());
             controller.closeWindow((Stage) loginLabel.getScene().getWindow());
-
-
         } catch (AccountAlreadyExists e) {
             controller.showAlertMessage(Alert.AlertType.ERROR, "Счет с таким номером уже существует.");
         }

@@ -35,11 +35,11 @@ public class AccountInfoFXMLController {
         controller.closeWindow((Stage)loginLabel.getScene().getWindow());
     }
 
-    void setData(String creationDate, String accountID, Double startAmount, String description) {
+    void setData(String creationDate, String accountID, String startAmount, String description) {
         loginLabel.setText(controller.getApplicationUser().getLogin());
         creationDateLabel.setText(creationDate);
         accountIDLabel.setText(accountID);
-        startAmountLabel.setText(Double.toString(startAmount));
+        startAmountLabel.setText(startAmount);
         descriptionLabel.setText(description);
     }
 }

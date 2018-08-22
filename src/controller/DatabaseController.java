@@ -4,6 +4,7 @@ import model.*;
 import model.exceptions.AccountAlreadyExists;
 import model.exceptions.UserAlreadyExists;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
 
@@ -79,7 +80,8 @@ public class DatabaseController implements DataStore {
                 account.setCreationDate(rs.getString("date"));
                 account.setAccountID(rs.getString("account_id"));
                 account.setDescription(rs.getString("description"));
-                account.setBalance(rs.getDouble("balance"));
+//                account.setBalance(rs.getDouble("balance"));
+                account.setBalance(rs.getString("balance"));
 
                 accounts.add(account);
             }
@@ -130,7 +132,7 @@ public class DatabaseController implements DataStore {
                 record.setRecordID(rs.getInt("record_id"));
                 record.setOperation(rs.getString("operation"));
                 record.setDate(rs.getString("date"));
-                record.setAmount(rs.getDouble("amount"));
+                record.setAmount(rs.getString("amount"));
                 record.setDescription(rs.getString("description"));
                 record.setCategory(rs.getString("category"));
 
@@ -193,7 +195,7 @@ public class DatabaseController implements DataStore {
             stmt.setString(++index, account.getCreationDate());
             stmt.setString(++index, account.getAccountID());
             stmt.setString(++index, account.getDescription());
-            stmt.setDouble(++index, account.getBalance());
+            stmt.setString(++index, account.getBalance());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -217,7 +219,7 @@ public class DatabaseController implements DataStore {
             stmt.setString(++index, account.getAccountID());
             stmt.setString(++index, record.getDate());
             stmt.setString(++index, record.getOperation());
-            stmt.setDouble(++index, record.getAmount());
+            stmt.setString(++index, record.getAmount());
             stmt.setString(++index, record.getDescription());
             stmt.setString(++index, record.getCategory());
             stmt.executeUpdate();
@@ -228,10 +230,10 @@ public class DatabaseController implements DataStore {
 
             PreparedStatement statement = connection.prepareStatement("update accounts set balance = ? where account_id = ?");
             if (record.getOperation().equals(Record.getWithdrawalOperation())) {
-                statement.setDouble(1, account.getBalance() - record.getAmount());
+                statement.setString(1, substraction(account.getBalance(), record.getAmount()));
             }
             if (record.getOperation().equals(Record.getDepositOperation())) {
-                statement.setDouble(1, account.getBalance() + record.getAmount());
+                statement.setString(1, summ(account.getBalance(), record.getAmount()));
             }
             statement.setString(2, account.getAccountID());
 
@@ -292,10 +294,10 @@ public class DatabaseController implements DataStore {
 
             PreparedStatement statement = connection.prepareStatement("update accounts set balance = ? where account_id = ?");
             if (record.getOperation().equals(Record.getWithdrawalOperation())) {
-                statement.setDouble(1, account.getBalance() + record.getAmount());
+                statement.setString(1, summ(account.getBalance(), record.getAmount()));
             }
             if (record.getOperation().equals(Record.getDepositOperation())) {
-                statement.setDouble(1, account.getBalance() - record.getAmount());
+                statement.setString(1, substraction(account.getBalance(), record.getAmount()));
             }
             statement.setString(2, account.getAccountID());
             statement.executeUpdate();
@@ -337,7 +339,8 @@ public class DatabaseController implements DataStore {
             closeResources(stmt, rs);
 
             PreparedStatement stmt2 = connection.prepareStatement("update accounts set balance = ? where account_id = ?");
-            stmt2.setDouble(1, account.getBalance() + withdrawalAmount - depositAmount);
+            stmt2.setString(1, new BigDecimal(account.getBalance()).add(new BigDecimal(withdrawalAmount).
+                    subtract(new BigDecimal(depositAmount))).toString());//FIXME
             stmt2.setString(2, account.getAccountID());
             stmt2.executeUpdate();
             closeResources(stmt2, null);
@@ -369,6 +372,14 @@ public class DatabaseController implements DataStore {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private String substraction(String balance, String amount) {
+        return new BigDecimal(balance).subtract(new BigDecimal(amount)).toString();
+    }
+
+    private String summ(String balance, String amount) {
+        return new BigDecimal(balance).subtract(new BigDecimal(amount)).toString();
     }
 
 }

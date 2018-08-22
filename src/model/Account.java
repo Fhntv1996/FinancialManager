@@ -1,5 +1,6 @@
 package model;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
@@ -11,30 +12,27 @@ public class Account {
     private String owner;
     private String accountID;
     private String description;
-    private double balance;//FIXME Изменить на BigDecimal
+    private BigDecimal balance;
     private String creationDate;
     private LinkedList<Record> records;
 
-    public Account(String owner, String accountID, String description, double balance) {
+    public Account(String owner, String accountID, String description, String balance) {
         this.owner = owner;
         this.accountID = accountID;
         this.description = description;
-        this.balance = balance;
+        this.balance = new BigDecimal(balance);
 
         initCreationDate();
     }
 
     public Account() {
-        this("owner", "accountID", "description", 0.0);
+        this("owner", "accountID", "description", "0.0");
     }
 
     public Account(String owner, String accountID) {
-        this(owner, accountID, "description", 0.0);
+        this(owner, accountID, "description", "0.0");
     }
 
-    /*
-     * Метод определяет сортировку в списке счетов.
-     */
     static public class AccountComparator implements Comparator<Account> {
         @Override
         public int compare(Account o1, Account o2) {
@@ -78,12 +76,12 @@ public class Account {
     }
 
 
-    public double getBalance() {
-        return balance;
+    public String getBalance() {
+        return balance.toString();
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setBalance(String balance) {
+        this.balance = new BigDecimal(balance);
     }
 
 
@@ -97,11 +95,11 @@ public class Account {
         records.add(record);
 
         if (record.getOperation().equals(Record.getWithdrawalOperation())) {
-            this.balance -= record.getAmount();
+            balance = balance.subtract(new BigDecimal(record.getAmount()));
         }
 
         if (record.getOperation().equals(Record.getDepositOperation())) {
-            this.balance += record.getAmount();
+            balance = balance.add(new BigDecimal(record.getAmount()));
         }
     }
 
@@ -110,10 +108,10 @@ public class Account {
      */
     public void removeRecord(Record record) {
         if (record.getOperation().equals(Record.getWithdrawalOperation())) {
-            setBalance(getBalance() + record.getAmount());
+            setBalance(new BigDecimal(getBalance()).add(new BigDecimal(record.getAmount())).toString());
         }
         if (record.getOperation().equals(Record.getDepositOperation())) {
-            setBalance(getBalance() - record.getAmount());
+            setBalance(new BigDecimal(getBalance()).subtract(new BigDecimal(record.getAmount())).toString());
         }
         records.remove(record);
     }
@@ -122,17 +120,17 @@ public class Account {
      * Метод удаляет все записи из счета и возвращает баланс счета к начальной сумме.
      */
     public void removeAllRecords() {
-        double amount = 0;
+        BigDecimal amount = new BigDecimal("0");
         for (Record record : records) {
             if (record.getOperation().equals(Record.getWithdrawalOperation())) {
-                amount += record.getAmount();
+                balance = balance.add(new BigDecimal(record.getAmount()));
             }
             if (record.getOperation().equals(Record.getDepositOperation())) {
-                amount -= record.getAmount();
+                balance = balance.subtract(new BigDecimal(record.getAmount()));
             }
         }
         records.clear();
-        balance += amount;
+        balance = balance.add(amount);
     }
 
     /*

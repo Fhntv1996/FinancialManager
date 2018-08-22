@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS ACCOUNTS
     date        TEXT,
     account_id  TEXT,
     description TEXT,
-    balance     REAL,
+    balance     TEXT,
     PRIMARY KEY (owner, account_id)
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS  RECORDS
     record_id   INTEGER     PRIMARY KEY AUTOINCREMENT,
     date        TEXT,
     operation   TEXT,
-    amount      REAL,
+    amount      TEXT,
     description TEXT,
     category    TEXT
 );
